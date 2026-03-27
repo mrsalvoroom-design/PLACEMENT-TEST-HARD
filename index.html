@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SALVO GROUP | GRAMMAR TEST CENTER</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f0f4fa 0%, #e6ecf3 100%);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            color: #1a2c3e;
+        }
+
+        .main-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ========= MENU AWAL ========= */
+        .menu-screen {
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.25);
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0B3B5F, #1B7B8C);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #4a6f82;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+        }
+
+        .section-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem 1.8rem;
+            width: 300px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e2edf2;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15);
+            border-color: #80b5ca;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #1c6f84;
+        }
+
+        .card .level-badge {
+            display: inline-block;
+            background: #e1f0f7;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: #5a6e7a;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .card .question-count {
+            font-weight: 600;
+            color: #2c7da0;
+        }
+
+        .btn-start {
+            background: #1c6f84;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-start:hover {
+            background: #0f5a6e;
+            transform: scale(1.02);
+        }
+
+        /* ========= QUIZ SCREEN ========= */
+        .quiz-screen {
+            display: none;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            padding: 1.8rem 2rem 2rem;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.25);
+        }
+
+        .quiz-header {
+            border-bottom: 2px solid rgba(0, 100, 150, 0.2);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .back-btn {
+            background: #eef2f7;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: 500;
+            cursor: pointer;
+            color: #1c6f84;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .section-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #1c6f84;
+        }
+
+        .badge-progress {
+            background: #1e466e20;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #155a7a;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.6rem 1.8rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #eef2f8;
+        }
+
+        .question-number {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #2c7da0;
+            background: #e1f0f7;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            margin-bottom: 1rem;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 1.8rem;
+            color: #0f2c3b;
+        }
+
+        .blank-line {
+            display: inline-block;
+            min-width: 120px;
+            border-bottom: 2px dashed #1c6f84;
+            margin: 0 4px;
+            font-weight: 600;
+            color: #1c6f84;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            margin-bottom: 1.6rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #f9fbfd;
+            padding: 0.7rem 1.2rem;
+            border-radius: 1rem;
+            border: 1px solid #e2edf2;
+            transition: all 0.15s;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: #eef5fa;
+            border-color: #aacfdf;
+        }
+
+        .option input {
+            width: 1.2rem;
+            height: 1.2rem;
+            accent-color: #1f7b8c;
+            cursor: pointer;
+        }
+
+        .option label {
+            font-size: 0.98rem;
+            font-weight: 500;
+            color: #1f3e4b;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.45;
+            display: none;
+            animation: fadeSlide 0.25s ease;
+        }
+
+        .feedback.correct {
+            background: #e0f7e8;
+            border-left: 5px solid #2c9c6e;
+            color: #1c5a41;
+            display: block;
+        }
+
+        .feedback.wrong {
+            background: #ffe8ea;
+            border-left: 5px solid #e25c5c;
+            color: #a13030;
+            display: block;
+        }
+
+        .feedback .explanation-title {
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .feedback p {
+            margin-top: 0.25rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        button {
+            background: white;
+            border: 1px solid #cbdde6;
+            padding: 0.75rem 1.6rem;
+            border-radius: 3rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #1a5d75;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+
+        button:hover {
+            background: #e2f0f5;
+            border-color: #80b5ca;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: #1c6f84;
+            border-color: #0e5b6e;
+            color: white;
+        }
+
+        .reset-btn {
+            background: #fff1e5;
+            border-color: #f0bc9b;
+            color: #b45a2e;
+        }
+
+        .score-area {
+            text-align: right;
+            font-weight: 700;
+            background: #eef3fc;
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            display: inline-block;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+            border-top: 1px solid #cde1ea;
+            padding-top: 1.5rem;
+        }
+
+        .jump-select {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #f5f9fc;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+        }
+
+        .jump-select select {
+            padding: 0.4rem 0.8rem;
+            border-radius: 2rem;
+            border: 1px solid #bcd3df;
+            background: white;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 700px) {
+            .quiz-screen, .menu-screen {
+                padding: 1.2rem;
+            }
+            .question-card {
+                padding: 1.2rem;
+            }
+            .question-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <!-- MENU AWAL -->
+    <div id="menuScreen" class="menu-screen">
+        <div class="logo">📚</div>
+        <h1>SALVO GROUP<br><span style="font-size: 1rem;">GRAMMAR TEST CENTER</span></h1>
+        <p class="subtitle">Pilih level tes grammar yang ingin Anda kerjakan</p>
+        
+        <div class="section-cards">
+            <div class="card" data-section="advanced">
+                <div class="card-icon">⭐</div>
+                <h3>Advanced Level</h3>
+                <div class="level-badge">ADVANCED</div>
+                <p>Soal grammar tingkat lanjut dengan struktur kompleks, conditional sentences, inversi, dan idiom tingkat tinggi.</p>
+                <div class="question-count">📝 20 Soal Pilihan Ganda</div>
+                <button class="btn-start">Mulai Tes →</button>
+            </div>
+            
+            <div class="card" data-section="intermediate">
+                <div class="card-icon">📖</div>
+                <h3>Intermediate Level</h3>
+                <div class="level-badge">INTERMEDIATE</div>
+                <p>Soal grammar tingkat menengah meliputi tenses, agreement, phrasal verbs, dan struktur kalimat dasar hingga menengah.</p>
+                <div class="question-count">📝 20 Soal Pilihan Ganda</div>
+                <button class="btn-start">Mulai Tes →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUIZ SCREEN (akan diisi dinamis) -->
+    <div id="quizScreen" class="quiz-screen"></div>
+</div>
+
+<script>
+    // ======================= DATA SOAL LENGKAP =======================
+    // Fungsi untuk mengganti tanda "-" atau blank dengan garis "_________"
+    function formatQuestionText(text) {
+        // Mengganti pola " - " atau " -" atau "- " dengan garis kosong
+        let formatted = text.replace(/\s*-\s*/g, ' _________ ');
+        // Mengganti multiple blanks
+        formatted = formatted.replace(/_{3,}/g, '_________');
+        // Menambahkan style span untuk blank
+        formatted = formatted.replace(/_________/g, '<span class="blank-line">_________</span>');
+        return formatted;
+    }
+
+    // ADVANCED SOAL (20 soal)
+    const advancedQuestions = [
+        { text: "In 1906 at Bogazköy, several thousand cuneiform tablets _________ and most of them _________ now on exhibit in the Anatolian civilizations museum in Ankara.", options: ["A) have been discovered / were", "B) were discovered / are", "C) have been discovered / had been", "D) would have been discovered / are being", "E) had discovered / have been"], correct: "B", explanation: "📜 'were discovered' untuk peristiwa selesai di masa lalu (1906). 'are' untuk keadaan sekarang (now on exhibit). Kombinasi simple past + simple present." },
+        { text: "One oil company, in particular, claims _________ its best to balance economic progress with environmental care and social responsibility.", options: ["A) to be done", "B) having done", "C) doing", "D) having been done", "E) to have done"], correct: "E", explanation: "🏢 'claims to have done' → infinitif perfect (to have done) menyatakan klaim telah berusaha maksimal. Struktur 'claim + to infinitive'." },
+        { text: "Had it not been for the variety and flexibility of its trades, Huddersfield, like so many of the other textile towns, _________ into a decline in the 20th century.", options: ["A) was going", "B) had gone", "C) would have gone", "D) would go", "E) had been gone"], correct: "C", explanation: "⚡ Inversi conditional type 3: 'Had it not been for...' = 'If it had not been for...', main clause pakai 'would have + V3'." },
+        { text: "_________ the letters written by so many parents, the headmaster agreed not to expel the boys.", options: ["A) In response to", "B) With reference to", "C) In case of", "D) Apart from", "E) Pertaining to"], correct: "A", explanation: "📩 'In response to' = sebagai tanggapan atas surat-surat orang tua." },
+        { text: "Henry VII's foreign policy was unheroic and unspectacular, _________ did he go to war and that was when he invaded France.", options: ["A) this once", "B) never before", "C) once again", "D) only once", "E) once more"], correct: "D", explanation: "👑 Inversi setelah 'only once' → 'only once did he go to war'. Artinya hanya satu kali pergi berperang." },
+        { text: "Bennett's novel 'The Old Wives' Tale' is the one _________ he is likely to be best known by posterity.", options: ["A) whose", "B) for whom", "C) by which", "D) in which", "E) that"], correct: "C", explanation: "📖 'be known by posterity' → dikenal oleh anak cucu. 'by which' merujuk pada novel sebagai media dikenal." },
+        { text: "Infectious diseases are those which are caused _________ an invasion of the body _________ organisms from outside.", options: ["A) by / by", "B) through / with", "C) over / through", "D) in / without", "E) upon / within"], correct: "A", explanation: "🦠 'caused by' + agent (invasion). 'invasion of the body by organisms' → kedua preposisi menggunakan 'by'." },
+        { text: "He looked _________ nervously _________ his shoulder hoping that no one was paying him any attention.", options: ["A) out / of", "B) up / through", "C) back / over", "D) down / from", "E) in / for"], correct: "C", explanation: "👀 'looked back over his shoulder' → idiom: menengok ke belakang melewati bahu." },
+        { text: "We know nothing at all about the company's new chairman _________ that he's just had his fiftieth birthday.", options: ["A) since", "B) instead", "C) in case", "D) on condition", "E) except"], correct: "E", explanation: "🔍 'except that' = kecuali bahwa. Kita tidak tahu apa-apa kecuali fakta ulang tahunnya." },
+        { text: "_________ will be expected to take the rest of us for a meal.", options: ["A) Whoever", "B) Who", "C) Whomever", "D) Whomsoever", "E) Whatever"], correct: "A", explanation: "👤 Subjek dari 'will be expected' → 'Whoever' (siapapun) sebagai subjek." },
+        { text: "Today, _________ rapid transportation and communications, the whole world is becoming one community with common economic interests.", options: ["A) as long as", "B) in spite of", "C) just as", "D) because of", "E) such as"], correct: "D", explanation: "🌐 'because of' = karena adanya transportasi dan komunikasi cepat." },
+        { text: "Of all the drugs that have been prescribed so far, this has proved to be _________ effective one.", options: ["A) most", "B) the most", "C) more", "D) just as", "E) the more"], correct: "B", explanation: "🏆 Superlative: 'the most effective one' karena konteks 'of all the drugs'." },
+        { text: "Of course, nobody knows what the outcome of the election _________ but at the moment Malcolm _________ as the most likely candidate.", options: ["A) would have been/is being regarded", "B) is/has been regarded", "C) was/would have been regarded", "D) will be/is regarded", "E) has been/has been regarded"], correct: "D", explanation: "🗳️ 'will be' (outcome masa depan) dan 'is regarded' (saat ini dianggap)." },
+        { text: "The doctors are of the opinion that if the disorder _________ a few months earlier, it _________ treated successfully.", options: ["A) had been diagnosed/could have been", "B) were diagnosed/would be", "C) has been diagnosed/will be", "D) is being diagnosed/is being", "E) were to be diagnosed/has been"], correct: "A", explanation: "🩺 Conditional type 3 (masa lalu): 'had been diagnosed' + 'could have been treated'." },
+        { text: "He's certainly going to recommend that the changes in the structure of the company be introduced step by step, and _________", options: ["A) so I am", "B) so am I", "C) so do I", "D) I do, too", "E) I also do"], correct: "B", explanation: "🔁 Respon agreement dengan 'so + auxiliary + I' → 'so am I'." },
+        { text: "Several members of the research team haven't handed in their reports yet, and I must admit I haven't _________", options: ["A) as well", "B) too", "C) either", "D) also", "E) neither"], correct: "C", explanation: "❌ Kalimat negatif: 'haven't handed in' + 'I haven't either'. Either dipakai dalam negative agreement." },
+        { text: "Acid rain only became a _________ environmental issue in the 1980s following groundbreaking studies in the 1970s.", options: ["A) previous", "B) deceitful", "C) reckless", "D) destructive", "E) prominent"], correct: "E", explanation: "🌧️ 'prominent issue' = isu yang menonjol." },
+        { text: "Using the dam to generate power would not _________ the treaty with the neighbouring country, but diverting water out of the river.", options: ["A) intimidate", "B) betray", "C) violate", "D) convert", "E) fetch"], correct: "C", explanation: "⚖️ 'violate the treaty' = melanggar perjanjian." },
+        { text: "The _________ that terrorists use the money from regions that finance them to their target country are often identical to those used by criminal gangs.", options: ["A) regulations", "B) methods", "C) provisions", "D) laws", "E) admissions"], correct: "B", explanation: "💸 'methods' = metode/cara." },
+        { text: "In the wake of yet another financial scandal, the chief accountant handed in his _________ to the director.", options: ["A) retirement", "B) redundancy", "C) promotion", "D) resignation", "E) vacancy"], correct: "D", explanation: "📄 'handed in his resignation' = mengajukan surat pengunduran diri." }
+    ];
+
+    // INTERMEDIATE SOAL (20 soal)
+    const intermediateQuestions = [
+        { text: "We expected about 20 girls but there were _________ people there.", options: ["A) another", "B) others", "C) some", "D) more"], correct: "D", explanation: "🧮 'more people' = lebih banyak orang, menunjukkan jumlah yang melebihi ekspektasi." },
+        { text: "Your bicycle shouldn't be in the house! _________", options: ["A) Take it out!", "B) Get out it!", "C) Put it off!", "D) Take away it!"], correct: "A", explanation: "🚲 'Take it out!' = keluarkan! Phrasal verb yang benar: take + object + out." },
+        { text: "What time does the bus _________ Bradford?", options: ["A) go away to", "B) go away for", "C) leave to", "D) leave for"], correct: "D", explanation: "🚌 'leave for' = berangkat menuju ke suatu tempat." },
+        { text: "She _________ be Canadian because she's got a British passport.", options: ["A) can't", "B) isn't able to", "C) mustn't", "D) doesn't need"], correct: "A", explanation: "🛂 'can't' = must not be possible, menunjukkan ketidakmungkinan karena memiliki paspor Inggris." },
+        { text: "'Our daughter _________ ' they said.", options: ["A) was born since three years", "B) is born for three years ago", "C) was born three years ago", "D) has been born since three years ago"], correct: "C", explanation: "👶 'was born three years ago' = lahir tiga tahun yang lalu. Simple past untuk peristiwa lampau spesifik." },
+        { text: "When _________ English?", options: ["A) has he begun to study", "B) has he begun study", "C) did he begin to study", "D) did he begin study"], correct: "C", explanation: "📚 'When did he begin to study?' → Simple past untuk menanyakan waktu dimulainya aksi." },
+        { text: "Do you want some cheese? No, _________", options: ["A) I've some still", "B) I still haven't much", "C) I don't want", "D) I've still got much"], correct: "D", explanation: "🧀 'I've still got much' = saya masih punya banyak." },
+        { text: "Brenda likes going to the theatre and _________", options: ["A) so do I", "B) so go I", "C) so I like", "D) so I am"], correct: "A", explanation: "🎭 'so do I' = saya juga. Pola agreement positif dengan auxiliary do." },
+        { text: "_________ from London to Edinburgh!", options: ["A) How long there is", "B) What a long way it is", "C) What distance is there", "D) How long is"], correct: "B", explanation: "🛤️ 'What a long way it is!' = ekspresi menjauhkan perjalanan jauh." },
+        { text: "He's a good guitarist, but he plays the piano _________", options: ["A) quite well", "B) too hardly", "C) very good", "D) much better"], correct: "D", explanation: "🎹 'much better' = jauh lebih baik. Comparative degree." },
+        { text: "When you go to the shops, bring me _________", options: ["A) a fruit tin", "B) a fruits tin", "C) a tin of fruit", "D) a tin of fruits"], correct: "C", explanation: "🥫 'a tin of fruit' = sekaleng buah. 'fruit' sebagai uncountable noun." },
+        { text: "Molly doesn't eat fish. _________", options: ["A) So doesn't John.", "B) Neither does John.", "C) John doesn't too.", "D) John doesn't that either"], correct: "B", explanation: "🐟 'Neither does John' = John juga tidak. Agreement negatif." },
+        { text: "The airport is five miles _________", options: ["A) away from here", "B) from here away", "C) far from here", "D) far away from here"], correct: "A", explanation: "✈️ 'away from here' = jauh dari sini. Struktur: five miles away from here." },
+        { text: "Please ask _________ and see me.", options: ["A) to Bill come", "B) Bill to come", "C) to Bill come", "D) Bill come"], correct: "B", explanation: "📞 'ask Bill to come' = minta Bill datang. Struktur ask + objek + to infinitive." },
+        { text: "She always buys _________ my birthday.", options: ["A) anything nice to", "B) anything nice for", "C) something awful to", "D) something awful for"], correct: "D", explanation: "🎁 'something awful for' = sesuatu yang mengerikan untuk ulang tahun." },
+        { text: "Aren't they friends _________?", options: ["A) of yours", "B) of you", "C) to yours", "D) to you"], correct: "A", explanation: "👥 'friends of yours' = teman-temanmu. Struktur possessive dengan double possessive." },
+        { text: "She hardly ever eats potatoes. _________ bread.", options: ["A) or bread or", "B) bread or", "C) neither bread or", "D) neither bread nor"], correct: "B", explanation: "🥔 'hardly ever eats potatoes or bread' → hardly ever diikuti or untuk item tambahan." },
+        { text: "This is the record _________", options: ["A) we like so much", "B) are liking so much", "C) like it much", "D) are liking it much"], correct: "A", explanation: "🎵 'we like so much' = yang kami sangat sukai." },
+        { text: "She's going to buy _________ new trousers.", options: ["A) some pair of", "B) some", "C) a couple of", "D) this"], correct: "B", explanation: "👖 'some new trousers' = beberapa celana panjang. 'trousers' plural." },
+        { text: "Is she going to school? - No, _________", options: ["A) she doesn't", "B) she's cycling", "C) she gets by bus", "D) to the shops"], correct: "D", explanation: "🏪 Jawaban 'to the shops' menunjukkan tujuan berbeda, bukan ke sekolah." }
+    ];
+
+    let currentSection = null;
+    let currentQuestions = [];
+    let userAnswers = [];
+    let currentIndex = 0;
+
+    // Helper untuk format teks soal dengan blank lines
+    function formatQuestionWithBlanks(text) {
+        return text.replace(/_________/g, '<span class="blank-line">_________</span>');
+    }
+
+    function renderQuiz() {
+        const q = currentQuestions[currentIndex];
+        const currentAnswer = userAnswers[currentIndex];
+        const container = document.getElementById('quizScreen');
+        
+        let optionsHtml = '';
+        q.options.forEach(opt => {
+            const optLetter = opt.charAt(0);
+            const isChecked = (currentAnswer === optLetter);
+            const radioId = `q_${currentIndex}_${optLetter}`;
+            optionsHtml += `
+                <div class="option">
+                    <input type="radio" name="question" id="${radioId}" value="${optLetter}" ${isChecked ? 'checked' : ''}>
+                    <label for="${radioId}">${opt}</label>
+                </div>
+            `;
+        });
+        
+        let feedbackHtml = '';
+        if (currentAnswer) {
+            const isCorrect = (currentAnswer === q.correct);
+            const correctAnswerText = q.options.find(opt => opt.startsWith(q.correct)) || q.correct;
+            feedbackHtml = `
+                <div class="feedback ${isCorrect ? 'correct' : 'wrong'}">
+                    <div class="explanation-title">${isCorrect ? '✓ BENAR' : '✗ SALAH'}</div>
+                    <p><strong>Jawaban benar: ${q.correct}</strong> — ${correctAnswerText}</p>
+                    <p>📖 <strong>Penjelasan Grammar:</strong> ${q.explanation}</p>
+                </div>
+            `;
+        }
+        
+        const formattedText = formatQuestionWithBlanks(q.text);
+        
+        const html = `
+            <div class="quiz-header">
+                <div>
+                    <button class="back-btn" id="backToMenuBtn">← Kembali ke Menu</button>
+                    <span class="section-title" style="margin-left: 1rem;">${currentSection === 'advanced' ? '⭐ ADVANCED LEVEL' : '📖 INTERMEDIATE LEVEL'}</span>
+                </div>
+                <div class="badge-progress" id="progressIndicator">Soal ${currentIndex+1} / ${currentQuestions.length}</div>
+            </div>
+            
+            <div class="question-card">
+                <div class="question-number">Soal ${currentIndex+1} dari ${currentQuestions.length}</div>
+                <div class="question-text">${currentIndex+1}. ${formattedText}</div>
+                <div class="options">
+                    ${optionsHtml}
+                </div>
+                ${feedbackHtml}
+            </div>
+            
+            <div class="nav-buttons">
+                <button id="prevBtn">◀ Sebelumnya</button>
+                <button id="nextBtn" class="btn-primary">Selanjutnya ▶</button>
+                <button id="resetBtn" class="reset-btn">🔄 Reset Jawaban</button>
+            </div>
+            
+            <div class="footer-info">
+                <div class="jump-select">
+                    <span>🔍 Lompat ke soal:</span>
+                    <select id="jumpSelect"></select>
+                </div>
+                <div class="score-area" id="scoreDisplay">✅ Skor: ${calculateScore()} / ${currentQuestions.length}</div>
+            </div>
+        `;
+        
+        container.innerHTML = html;
+        container.style.display = 'block';
+        
+        // Event listeners
+        document.querySelectorAll('.option input').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                userAnswers[currentIndex] = radio.value;
+                renderQuiz();
+            });
+        });
+        
+        document.getElementById('prevBtn').onclick = () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuiz();
+            } else {
+                alert("Ini adalah soal pertama.");
+            }
+        };
+        
+        document.getElementById('nextBtn').onclick = () => {
+            if (currentIndex < currentQuestions.length - 1) {
+                currentIndex++;
+                renderQuiz();
+            } else {
+                alert("🏁 Anda telah mencapai soal terakhir!");
+            }
+        };
+        
+        document.getElementById('resetBtn').onclick = () => {
+            if (confirm("Reset semua jawaban?")) {
+                userAnswers = new Array(currentQuestions.length).fill(null);
+                currentIndex = 0;
+                renderQuiz();
+            }
+        };
+        
+        document.getElementById('backToMenuBtn').onclick = () => {
+            document.getElementById('menuScreen').style.display = 'block';
+            container.style.display = 'none';
+        };
+        
+        // Jump select
+        const jumpSelect = document.getElementById('jumpSelect');
+        if (jumpSelect) {
+            jumpSelect.innerHTML = '';
+            for (let i = 0; i < currentQuestions.length; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `Soal ${i+1}`;
+                if (userAnswers[i]) option.style.fontWeight = 'bold';
+                jumpSelect.appendChild(option);
+            }
+            jumpSelect.value = currentIndex;
+            jumpSelect.onchange = (e) => {
+                const newIndex = parseInt(e.target.value);
+                if (!isNaN(newIndex)) {
+                    currentIndex = newIndex;
+                    renderQuiz();
+                }
+            };
+        }
+    }
+    
+    function calculateScore() {
+        let correct = 0;
+        for (let i = 0; i < userAnswers.length; i++) {
+            if (userAnswers[i] && userAnswers[i] === currentQuestions[i].correct) {
+                correct++;
+            }
+        }
+        return correct;
+    }
+    
+    function startQuiz(section) {
+        currentSection = section;
+        if (section === 'advanced') {
+            currentQuestions = [...advancedQuestions];
+        } else {
+            currentQuestions = [...intermediateQuestions];
+        }
+        userAnswers = new Array(currentQuestions.length).fill(null);
+        currentIndex = 0;
+        
+        document.getElementById('menuScreen').style.display = 'none';
+        renderQuiz();
+    }
+    
+    // Event listeners untuk tombol di menu
+    document.querySelectorAll('.card').forEach(card => {
+        const btn = card.querySelector('.btn-start');
+        const section = card.getAttribute('data-section');
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            startQuiz(section);
+        });
+        card.addEventListener('click', (e) => {
+            if (e.target !== btn) {
+                startQuiz(section);
+            }
+        });
+    });
+</script>
+</body>
+</html>
